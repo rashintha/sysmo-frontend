@@ -1,0 +1,14 @@
+.sysmo-text {
+  position: absolute;
+  left: 20vw;
+  top: 17vh;
+
+  font-family: 'Pacifico';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10vw;
+}
+
+.login-background-design {
+  z-index: -10;
+}
