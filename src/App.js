@@ -4,6 +4,7 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import './App.css'
 import Login from './components/auth/Login/Login'
 import NotFound from './components/errors/NotFound/NotFound'
+import RightDrawer from './components/settings/RightDrawer'
 import { openDrawer, closeDrawer } from './features/theme/theme'
 
 /**
@@ -12,6 +13,7 @@ import { openDrawer, closeDrawer } from './features/theme/theme'
  */
 function App() {
   const drawerOpened = useSelector((state) => state.theme.value.drawerOpen)
+  const theme = useSelector((state) => state.theme.value.theme)
   const dispatch = useDispatch()
 
   const toggleDrawer = () => {
@@ -23,7 +25,7 @@ function App() {
   }
 
   return (
-    <div className='background h-screen'>
+    <div className={`background h-screen ${theme}`}>
       <Router>
         <Routes>
           <Route path='/login' element={<Login />} />
@@ -31,13 +33,16 @@ function App() {
         </Routes>
       </Router>
 
-      <div className={`fixed right-0 inset-y-1/4 h-2/6 z-20 flex flex-row duration-500 ease-in-out transition-width
+      <div className={`fixed right-0 inset-y-1/4 h-min z-20 flex flex-row duration-500 ease-in-out transition-width
         ${drawerOpened ? 'w-2/12' : 'w-8'}`}>
-        <div onClick={toggleDrawer} className='bg-slate-50 rounded-l h-min p-1 shadow cursor-pointer hover:bg-slate-100'>
-          <ArrowsRightLeftIcon className='w-6'></ArrowsRightLeftIcon>
+        <div onClick={toggleDrawer} className='bg-slate-50 dark:bg-slate-800 rounded-l h-min p-1 shadow cursor-pointer
+          hover:bg-slate-100 dark:hover:bg-slate-700'>
+          <ArrowsRightLeftIcon className='w-6 dark:text-white'></ArrowsRightLeftIcon>
         </div>
-        <div className={`bg-white w-11/12 h-full shadow duration-500 ease-in-out transition-all transform 
-          ${drawerOpened ? 'translate-x-0' : 'translate-x-full'}`}></div>
+        <div className={`bg-white dark:bg-slate-800 w-11/12 h-full shadow duration-500 ease-in-out transition-all transform
+          ${drawerOpened ? 'translate-x-0' : 'translate-x-full'}`}>
+          <RightDrawer />
+        </div>
       </div>
     </div>
   )

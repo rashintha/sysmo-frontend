@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { LIGHT } from './theme.const'
 
 const initialStateValue = {
-  theme: LIGHT,
+  theme: localStorage.getItem('theme') ?? LIGHT,
   drawerOpen: false,
 }
 
@@ -11,6 +11,7 @@ const theme = createSlice({
   initialState: { value: initialStateValue },
   reducers: {
     changeTheme: (state, action) => {
+      localStorage.setItem('theme', action.payload)
       state.value.theme = action.payload
     },
     openDrawer: (state) => {

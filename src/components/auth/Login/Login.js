@@ -1,11 +1,10 @@
-import React from 'react'
 import { AtSymbolIcon, FingerPrintIcon } from '@heroicons/react/24/solid'
 import './Login.css'
 
 const Login = () => {
   return (
     <div className='h-full'>
-      <svg className='fixed top-0 login-background-design' width="1346" height="1080" viewBox="0 0 1346 1080"
+      <svg className='fixed top-0 z-0' width="1346" height="1080" viewBox="0 0 1346 1080"
         fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M105.761 -112.5C122.312 -141.167 163.688 -141.167 180.239 -112.5L463.429 378C479.98 406.667 459.292
           442.5 426.19 442.5H-140.19C-173.292 442.5 -193.98 406.667 -177.429 378L105.761 -112.5Z" fill="#D68484" fillOpacity="0.5" />
@@ -29,7 +28,7 @@ const Login = () => {
           <div className='sysmo-text text-neutral-800'>Sysmo</div>
         </div>
         <div className='basis-2/6 flex flex-col items-center justify-center h-full'>
-          <div className='text-neutral-800'>Login below to get started.</div>
+          <div className='text-neutral-800 dark:text-white'>Login below to get started.</div>
 
           <div className='mt-6 bg-white py-2 px-2 w-7/12 flex flex-row'>
             <div className='border-r-[1px] mr-2 pr-2'>

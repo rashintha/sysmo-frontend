@@ -1,3 +1,7 @@
 .background {
   background: radial-gradient(50% 158.02% at 50% 50%, rgba(136, 14, 232, 0.05) 0%, rgba(71, 71, 71, 0.05) 52.6%, rgba(136, 14, 232, 0.05) 100%);
 }
+
+.dark.background {
+  background: radial-gradient(100.55% 317.78% at 0% 0%, #403346 0%, #474747 52.4%, #403346 100%);
+}
