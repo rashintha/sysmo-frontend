@@ -1,4 +1,4 @@
-import { ArrowsRightLeftIcon } from '@heroicons/react/24/solid'
+import { Cog6ToothIcon } from '@heroicons/react/24/solid'
 import { useDispatch, useSelector } from 'react-redux'
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import './App.css'
@@ -33,14 +33,13 @@ function App() {
         </Routes>
       </Router>
 
-      <div className={`fixed right-0 inset-y-1/4 h-min z-20 flex flex-row duration-500 ease-in-out transition-width
+      <div className={`fixed right-0 inset-y-1/4 h-min z-20 flex flex-row duration-500 ease-in-out transition-width overflow-x-hidden
         ${drawerOpened ? 'w-2/12' : 'w-8'}`}>
         <div onClick={toggleDrawer} className='bg-slate-50 dark:bg-slate-800 rounded-l h-min p-1 shadow cursor-pointer
           hover:bg-slate-100 dark:hover:bg-slate-700'>
-          <ArrowsRightLeftIcon className='w-6 dark:text-white'></ArrowsRightLeftIcon>
+          <Cog6ToothIcon className='w-6 dark:text-white'></Cog6ToothIcon>
         </div>
-        <div className={`bg-white dark:bg-slate-800 w-11/12 h-full shadow duration-500 ease-in-out transition-all transform
-          ${drawerOpened ? 'translate-x-0' : 'translate-x-full'}`}>
+        <div className={`bg-white dark:bg-slate-800 w-11/12 h-full shadow`}>
           <RightDrawer />
         </div>
       </div>
