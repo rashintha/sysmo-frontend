@@ -57,7 +57,7 @@ const Login = () => {
             <input onChange={(e) => setEmail(e.target.value)} className='outline-none w-full'
               type='email' placeholder='Email Address'></input>
           </div>
-          {emailValidity === false ? <div className='w-7/12 text-xs pt-1 text-red-600'>
+          {emailValidity === false ? <div className='w-7/12 text-xs pt-1 text-red-600 dark:text-red-400'>
             Please enter a valid email address.
           </div> : ''}
 
@@ -68,7 +68,7 @@ const Login = () => {
             <input onChange={(e) => setPassword(e.target.value)} className='outline-none w-full'
               type='password' placeholder='Password'></input>
           </div>
-          {passwordValidity === false ? <div className='w-7/12 text-xs pt-1 text-red-600'>
+          {passwordValidity === false ? <div className='w-7/12 text-xs pt-1 text-red-600 dark:text-red-400'>
             Please enter a valid password.
           </div> : ''}
 
