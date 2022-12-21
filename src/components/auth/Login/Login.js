@@ -1,7 +1,27 @@
 import { AtSymbolIcon, FingerPrintIcon } from '@heroicons/react/24/solid'
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { login } from '../../../features/auth/auth'
+import { validateEmail } from '../../../util/functions'
 import './Login.css'
 
 const Login = () => {
+  const dispatch = useDispatch()
+
+  const [email, setEmail] = useState()
+  const [password, setPassword] = useState()
+  const [emailValidity, setEmailValidity] = useState()
+  const [passwordValidity, setPasswordValidity] = useState()
+
+  const loginClick = () => {
+    setEmailValidity(validateEmail(email))
+    setPasswordValidity(password !== undefined && password && password !== '')
+
+    if (emailValidity && passwordValidity) {
+      dispatch(login({ email, password }))
+    }
+  }
+
   return (
     <div className='h-full'>
       <svg className='fixed top-0 z-0' width="1346" height="1080" viewBox="0 0 1346 1080"
@@ -23,7 +43,7 @@ const Login = () => {
       </svg>
 
 
-      <div className='flex flex-row h-full'>
+      <div className='flex flex-row h-full w-full fixed top-0 left-0'>
         <div className='basis-4/6 flex items-center justify-center h-full'>
           <div className='sysmo-text text-neutral-800'>Sysmo</div>
         </div>
@@ -34,18 +54,26 @@ const Login = () => {
             <div className='border-r-[1px] mr-2 pr-2'>
               <AtSymbolIcon className='w-6 text-neutral-800'></AtSymbolIcon>
             </div>
-            <input className='outline-none w-full' type='email' placeholder='Email Address'></input>
+            <input onChange={(e) => setEmail(e.target.value)} className='outline-none w-full'
+              type='email' placeholder='Email Address'></input>
           </div>
+          {emailValidity === false ? <div className='w-7/12 text-xs pt-1 text-red-600'>
+            Please enter a valid email address.
+          </div> : ''}
 
           <div className='mt-2 bg-white py-2 px-2 w-7/12 flex flex-row'>
             <div className='border-r-[1px] mr-2 pr-2'>
               <FingerPrintIcon className='w-6 text-neutral-800'></FingerPrintIcon>
             </div>
-            <input className='outline-none w-full' type='password' placeholder='Password'></input>
+            <input onChange={(e) => setPassword(e.target.value)} className='outline-none w-full'
+              type='password' placeholder='Password'></input>
           </div>
+          {passwordValidity === false ? <div className='w-7/12 text-xs pt-1 text-red-600'>
+            Please enter a valid password.
+          </div> : ''}
 
           <div className='mt-4 w-7/12'>
-            <button className='bg-slate-500 hover:bg-slate-600 py-2 px-2 w-full text-white'>LOGIN</button>
+            <button onClick={loginClick} className='bg-slate-500 hover:bg-slate-600 py-2 px-2 w-full text-white'>LOGIN</button>
           </div>
         </div>
       </div>

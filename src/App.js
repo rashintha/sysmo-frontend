@@ -1,48 +1,35 @@
-import { Cog6ToothIcon } from '@heroicons/react/24/solid'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import './App.css'
 import Login from './components/auth/Login/Login'
 import NotFound from './components/errors/NotFound/NotFound'
 import RightDrawer from './components/settings/RightDrawer'
-import { openDrawer, closeDrawer } from './features/theme/theme'
 
 /**
  * Main app
  * @return {JSX.Element} a JSX Eliment
  */
 function App() {
-  const drawerOpened = useSelector((state) => state.theme.value.drawerOpen)
   const theme = useSelector((state) => state.theme.value.theme)
-  const dispatch = useDispatch()
+  const logged = useSelector((state) => state.auth.value.logged)
 
-  const toggleDrawer = () => {
-    if (drawerOpened) {
-      dispatch(closeDrawer())
-    } else {
-      dispatch(openDrawer())
-    }
+  if (!logged) {
+    return (<div className={`background h-screen ${theme}`}>
+      <Login></Login>
+      <RightDrawer />
+    </div>
+    )
   }
 
   return (
     <div className={`background h-screen ${theme}`}>
       <Router>
         <Routes>
-          <Route path='/login' element={<Login />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </Router>
 
-      <div className={`fixed right-0 inset-y-1/4 h-min z-20 flex flex-row duration-500 ease-in-out transition-width overflow-x-hidden
-        ${drawerOpened ? 'w-2/12' : 'w-8'}`}>
-        <div onClick={toggleDrawer} className='bg-slate-50 dark:bg-slate-800 rounded-l h-min p-1 shadow cursor-pointer
-          hover:bg-slate-100 dark:hover:bg-slate-700'>
-          <Cog6ToothIcon className='w-6 dark:text-white'></Cog6ToothIcon>
-        </div>
-        <div className={`bg-white dark:bg-slate-800 w-11/12 h-full shadow`}>
-          <RightDrawer />
-        </div>
-      </div>
+      <RightDrawer />
     </div>
   )
 }
